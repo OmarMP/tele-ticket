@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="50" resizable="false" collapsible="false">
+           <h:outputText value="Tele-ticket" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" header="" resizable="false" collapsible="false">
+                
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="200" header="Tareas" resizable="false" collapsible="false">
+                <h:form>
+                    <p:panelMenu style="width:190px">
+                        <p:menuitem value="Inicio" url=""/>
+                        <p:submenu label="Tickets">
+                            <p:menuitem value="Crear Ticket" actionListener="#" icon="ui-icon-document" />
+                            <p:menuitem value="Modificar Ticket" actionListener="#"  icon="ui-icon-pencil" />
+                            <p:menuitem value="Consultar Ticket" actionListener="#"  icon="ui-icon-search" />
+                        </p:submenu>
+                        <p:submenu label="Asignar">
+                            <p:menuitem value="Asignar Ticket" actionListener="#"  ajax="false" icon="ui-icon-document"/>
+                            <p:menuitem value="Reasignar Ticket" actionListener="#"  ajax="false" icon="ui-icon-refresh"/>
+                        </p:submenu>
+                        <p:separator />
+                        <p:submenu label="Usuarios" >
+                            <p:menuitem value="Roles" actionListener="#"  ajax="false" icon="ui-icon-person"/> 
+                        </p:submenu>
+                        <p:submenu label="Reportes" >
+                            <p:menuitem value="Día" actionListener="#"  ajax="false" icon="ui-icon-clipboard"/> 
+                            <p:menuitem value="Mes" actionListener="#"  ajax="false" icon="ui-icon-clipboard"/> 
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="" resizable="false" collapsible="false" >
+                
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <p:commandButton value="Crear ticket" id="ajax" icon="ui-icon-plusthick"/>
+
+                <p:dataTable id="ticket" var="reg" 
+                             value="#{frmDashboarb.modelo}"
+                             lazy="true"  
+                             selectionMode="single"
+                             rows="10"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
+                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" paginator="true">
+                    <p:column headerText="Id ticket">
+                        <h:outputText value="#{reg.idTicket}" />
+                    </p:column>
+
+                    <p:column headerText="Titulo">
+                        <h:outputText value="#{reg.idIncidencia.titulo}" />
+                    </p:column>
+
+                    <p:column headerText="Departamento">
+                        <h:outputText value="#{reg.idUsuario.idDepartamento.departamento}" />
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{reg.idEstado.estado}" />
+                    </p:column>
+                    
+                </p:dataTable>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+</html>
+
