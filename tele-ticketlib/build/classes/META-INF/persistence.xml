@@ -11,7 +11,7 @@
     <class>entity.Ticket</class>
     <class>entity.Usuario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tele-ticket"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tele-ticket?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="mortal"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="mortal"/>
