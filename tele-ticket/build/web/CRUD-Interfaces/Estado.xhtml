@@ -21,7 +21,7 @@ and open the template in the editor.
 
         <h:form id="frm">
 
-            <h:outputText value="Departamento"/>
+            <h:outputText value="Estado"/>
 
 
 
@@ -74,7 +74,7 @@ and open the template in the editor.
          
             <p:panelGrid columns="2" rendered="#{frmEstado.estado!='NONE'}">
                 Nombre <p:inputText id="txtnombre" 
-                                    immediate="true" value="#{frmEstado.estado_.departamento}" required="true" requiredMessage="Agrege un nombre al registro de categoria" />
+                                    immediate="true" value="#{frmEstado.estado_.estado}" required="true" requiredMessage="Agrege un nombre al registro de categoria" />
                 Activo <p:selectBooleanCheckbox value="#{frmEstado.estado_.status}"/>
                 Descripcion <p:inputTextarea value="#{frmEstado.estado_.descripcion}"/>
                 Usuario Crea <p:inputTextarea value="#{frmEstado.estado_.usuariocreo}"/>

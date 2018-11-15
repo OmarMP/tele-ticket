@@ -8,26 +8,13 @@ package acceso;
 import entity.Usuario;
 import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface UsuarioFacadeLocal {
+public interface UsuarioFacadeLocal extends MetodosGenericos<Usuario>{
 
-    void create(Usuario usuario);
-
-    void edit(Usuario usuario);
-
-    void remove(Usuario usuario);
-
-    Usuario find(Object id);
-
-    List<Usuario> findAll();
-
-    List<Usuario> findRange(int desde, int  hasta);
-
-    int count();
-    
 }

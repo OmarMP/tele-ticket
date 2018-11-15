@@ -5,9 +5,13 @@
  */
 package web.controllers;
 
-import entity.Categoria;
+
+
+import acceso.RolFacadeLocal;
+import acceso.UsuarioFacadeLocal;
+import entity.Rol;
+import entity.Usuario;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,19 +19,19 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
-import acceso.CategoriaFacadeLocal;
+
 
 /**
  *
  * @author Aleexis Flores
  */
-@Named(value = "frmCategoria")
+@Named(value = "frmUsuario")
 @ViewScoped
-public class CategoriaBean extends BackingBean<Categoria> implements Serializable {
+public class UsuarioBean extends BackingBean<Usuario> implements Serializable {
 
     @EJB
-    CategoriaFacadeLocal categoriafacade_;
-    Categoria categoria_;
+    UsuarioFacadeLocal usuariofacade_;
+    Usuario usuario_;
     private EstadosCRUD estado;
 
     //**** Manejo de imagenes que se desplazan en el inicio
@@ -48,7 +52,7 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     public void init() {
         //suffleImages();
         estado = EstadosCRUD.NONE;
-        categoria_ = new Categoria();
+        usuario_ = new Usuario();
         inicializar();
     }
 
@@ -56,14 +60,16 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     metodos sobre-cargados
      */
     @Override
-    protected Categoria getrowD(String rowkey) {
+    protected Usuario getrowD(String rowkey) {
 
         if (rowkey != null && !rowkey.isEmpty() && this.getLazyModel().getWrappedData() != null) {
             try {
 
-                for (Categoria item : (List<Categoria>) this.getLazyModel().getWrappedData()) {
+                for (Usuario item : (List<Usuario>) this.getLazyModel().getWrappedData()) {
                     Integer registro = new Integer(rowkey);
-                    if (item.getIdCategoria().compareTo(registro) == 0) {
+                    // debido a que el id de usuario esta definido en la base de datos como una cadena de texto,
+                    //este metodo muy probablemente no funcione
+                    if (item.getIdUsuario().compareTo(registro+"") == 0) {
                         return item;
                     }
 
@@ -77,21 +83,20 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
         return null;
 
     }
-
     @Override
-    protected Object getKey(Categoria entity) {
-        return entity.getIdCategoria();
+    protected Object getKey(Usuario entity) {
+        return entity.getIdUsuario();
     }
 
     @Override
-    protected MetodosGenericos<Categoria> getFacadeLocal() {
-        return (MetodosGenericos<Categoria>) categoriafacade_;
-        //return categoriafacade_ Original
+    protected MetodosGenericos<Usuario> getFacadeLocal() {
+        return (MetodosGenericos<Usuario>) usuariofacade_;
+        //return estadofacade_ Original
     }
 
     @Override
-    protected Categoria getEntity() {
-        return categoria_;
+    protected Usuario getEntity() {
+        return usuario_;
     }
 
     @Override
@@ -123,12 +128,12 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     public void onRowSelect(SelectEvent event) {
         btncancelarHandler();
         estado = EstadosCRUD.EDITAR;
-        categoria_ = (Categoria) event.getObject();
+        usuario_ = (Usuario) event.getObject();
     }
 
     public void btncancelarHandler() {
         estado = EstadosCRUD.NONE;
-        categoria_ = new Categoria();
+        usuario_ = new Usuario();
     }
 
     public void btnNuevoHandler() {
@@ -142,29 +147,36 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
         return estado;
     }
 
-    public Categoria getCategoria_() {
-        return categoria_;
+    public Usuario getUsuario_() {
+        return usuario_;
     }
 
-    public void setCategoria_(Categoria categoria_) {
-        this.categoria_ = categoria_;
+    public void setUsuario_(Usuario usuario_) {
+        this.usuario_ = usuario_;
     }
 
-    public List<Categoria> getLista() {
+    public List<Usuario> getLista() {
         return lista;
     }
 
-    public void setLista(List<Categoria> lista) {
+    public void setLista(List<Usuario> lista) {
         this.lista = lista;
     }
 
-    public LazyDataModel<Categoria> getLazyModel() {
+    public LazyDataModel<Usuario> getLazyModel() {
         return lazyModel;
     }
+    
 
-    public void setLazyModel(LazyDataModel<Categoria> lazyModel) {
+    public void setLazyModel(LazyDataModel<Usuario> lazyModel) {
         this.lazyModel = lazyModel;
     }
+
+    
+
+    
+
+    
 
     
 

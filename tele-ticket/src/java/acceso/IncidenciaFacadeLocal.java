@@ -8,26 +8,15 @@ package acceso;
 import entity.Incidencia;
 import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface IncidenciaFacadeLocal {
+public interface IncidenciaFacadeLocal extends MetodosGenericos<Incidencia> {
 
-    void create(Incidencia incidencia);
 
-    void edit(Incidencia incidencia);
-
-    void remove(Incidencia incidencia);
-
-    Incidencia find(Object id);
-
-    List<Incidencia> findAll();
-
-    List<Incidencia> findRange(int desde, int  hasta);
-
-    int count();
     
 }

@@ -8,26 +8,14 @@ package acceso;
 import entity.Ticket;
 import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface TicketFacadeLocal {
+public interface TicketFacadeLocal extends MetodosGenericos<Ticket>{
 
-    void create(Ticket ticket);
-
-    void edit(Ticket ticket);
-
-    void remove(Ticket ticket);
-
-    Ticket find(Object id);
-
-    List<Ticket> findAll();
-
-    List<Ticket> findRange(int desde, int  hasta);
-
-    int count();
     
 }

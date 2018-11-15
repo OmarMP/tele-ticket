@@ -5,9 +5,13 @@
  */
 package web.controllers;
 
-import entity.Categoria;
+
+
+
+
+import acceso.TicketFacadeLocal;
+import entity.Ticket;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,19 +19,19 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
-import acceso.CategoriaFacadeLocal;
+
 
 /**
  *
  * @author Aleexis Flores
  */
-@Named(value = "frmCategoria")
+@Named(value = "frmTicket")
 @ViewScoped
-public class CategoriaBean extends BackingBean<Categoria> implements Serializable {
+public class TicketBean extends BackingBean<Ticket> implements Serializable {
 
     @EJB
-    CategoriaFacadeLocal categoriafacade_;
-    Categoria categoria_;
+    TicketFacadeLocal ticketfacade_;
+    Ticket ticket_;
     private EstadosCRUD estado;
 
     //**** Manejo de imagenes que se desplazan en el inicio
@@ -48,7 +52,7 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     public void init() {
         //suffleImages();
         estado = EstadosCRUD.NONE;
-        categoria_ = new Categoria();
+        ticket_ = new Ticket();
         inicializar();
     }
 
@@ -56,14 +60,15 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     metodos sobre-cargados
      */
     @Override
-    protected Categoria getrowD(String rowkey) {
+    protected Ticket getrowD(String rowkey) {
 
         if (rowkey != null && !rowkey.isEmpty() && this.getLazyModel().getWrappedData() != null) {
             try {
 
-                for (Categoria item : (List<Categoria>) this.getLazyModel().getWrappedData()) {
+                for (Ticket item : (List<Ticket>) this.getLazyModel().getWrappedData()) {
                     Integer registro = new Integer(rowkey);
-                    if (item.getIdCategoria().compareTo(registro) == 0) {
+                
+                    if (item.getIdTicket().compareTo(registro) == 0) {
                         return item;
                     }
 
@@ -77,21 +82,20 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
         return null;
 
     }
-
     @Override
-    protected Object getKey(Categoria entity) {
-        return entity.getIdCategoria();
+    protected Object getKey(Ticket entity) {
+        return entity.getIdUsuario();
     }
 
     @Override
-    protected MetodosGenericos<Categoria> getFacadeLocal() {
-        return (MetodosGenericos<Categoria>) categoriafacade_;
-        //return categoriafacade_ Original
+    protected MetodosGenericos<Ticket> getFacadeLocal() {
+        return (MetodosGenericos<Ticket>) ticketfacade_;
+        //return ticketfacade_ Original
     }
 
     @Override
-    protected Categoria getEntity() {
-        return categoria_;
+    protected Ticket getEntity() {
+        return ticket_;
     }
 
     @Override
@@ -123,12 +127,12 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     public void onRowSelect(SelectEvent event) {
         btncancelarHandler();
         estado = EstadosCRUD.EDITAR;
-        categoria_ = (Categoria) event.getObject();
+        ticket_ = (Ticket) event.getObject();
     }
 
     public void btncancelarHandler() {
         estado = EstadosCRUD.NONE;
-        categoria_ = new Categoria();
+        ticket_ = new Ticket();
     }
 
     public void btnNuevoHandler() {
@@ -142,29 +146,36 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
         return estado;
     }
 
-    public Categoria getCategoria_() {
-        return categoria_;
+    public Ticket getTicket_() {
+        return ticket_;
     }
 
-    public void setCategoria_(Categoria categoria_) {
-        this.categoria_ = categoria_;
+    public void setUsuario_(Ticket ticket_) {
+        this.ticket_ = ticket_;
     }
 
-    public List<Categoria> getLista() {
+    public List<Ticket> getLista() {
         return lista;
     }
 
-    public void setLista(List<Categoria> lista) {
+    public void setLista(List<Ticket> lista) {
         this.lista = lista;
     }
 
-    public LazyDataModel<Categoria> getLazyModel() {
+    public LazyDataModel<Ticket> getLazyModel() {
         return lazyModel;
     }
+    
 
-    public void setLazyModel(LazyDataModel<Categoria> lazyModel) {
+    public void setLazyModel(LazyDataModel<Ticket> lazyModel) {
         this.lazyModel = lazyModel;
     }
+
+    
+
+    
+
+    
 
     
 

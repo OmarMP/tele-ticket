@@ -45,15 +45,15 @@ public class EstadoBean extends BackingBean<Estado> implements Serializable {
     public List<String> getImages() {
         return images;
     }
-
+*/
     @PostConstruct
     public void init() {
-        suffleImages();
+      // suffleImages();
         estado = EstadosCRUD.NONE;
-        marca_ = new Marca();
+        estado_ = new Estado();
         inicializar();
     }
-*/
+
     /*
     metodos sobre-cargados
      */

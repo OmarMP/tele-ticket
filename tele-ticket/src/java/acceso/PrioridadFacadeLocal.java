@@ -8,26 +8,15 @@ package acceso;
 import entity.Prioridad;
 import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface PrioridadFacadeLocal {
+public interface PrioridadFacadeLocal extends MetodosGenericos<Prioridad>{
 
-    void create(Prioridad prioridad);
 
-    void edit(Prioridad prioridad);
-
-    void remove(Prioridad prioridad);
-
-    Prioridad find(Object id);
-
-    List<Prioridad> findAll();
-
-    List<Prioridad> findRange(int desde, int  hasta);
-
-    int count();
     
 }

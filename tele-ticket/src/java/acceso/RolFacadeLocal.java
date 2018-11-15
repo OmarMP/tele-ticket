@@ -6,28 +6,16 @@
 package acceso;
 
 import entity.Rol;
-import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface RolFacadeLocal {
+public interface RolFacadeLocal extends MetodosGenericos<Rol>{
 
-    void create(Rol rol);
 
-    void edit(Rol rol);
-
-    void remove(Rol rol);
-
-    Rol find(Object id);
-
-    List<Rol> findAll();
-
-    List<Rol> findRange(int desde, int  hasta);
-
-    int count();
     
 }

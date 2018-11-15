@@ -45,15 +45,15 @@ public class PrioridadBean extends BackingBean<Prioridad> implements Serializabl
     public List<String> getImages() {
         return images;
     }
-
+*/
     @PostConstruct
     public void init() {
-        suffleImages();
+        //suffleImages();
         estado = EstadosCRUD.NONE;
-        marca_ = new Marca();
+        prioridad_ = new Prioridad();
         inicializar();
     }
-*/
+
     /*
     metodos sobre-cargados
      */

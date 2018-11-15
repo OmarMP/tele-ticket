@@ -8,26 +8,15 @@ package acceso;
 import entity.Estado;
 import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface EstadoFacadeLocal {
+public interface EstadoFacadeLocal extends MetodosGenericos<Estado> {
 
-    void create(Estado estado);
 
-    void edit(Estado estado);
-
-    void remove(Estado estado);
-
-    Estado find(Object id);
-
-    List<Estado> findAll();
-
-    List<Estado> findRange(int desde, int  hasta);
-
-    int count();
     
 }

@@ -5,9 +5,11 @@
  */
 package web.controllers;
 
-import entity.Categoria;
+
+
+import acceso.RolFacadeLocal;
+import entity.Rol;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,19 +17,19 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
-import acceso.CategoriaFacadeLocal;
+
 
 /**
  *
  * @author Aleexis Flores
  */
-@Named(value = "frmCategoria")
+@Named(value = "frmRol")
 @ViewScoped
-public class CategoriaBean extends BackingBean<Categoria> implements Serializable {
+public class RolBean extends BackingBean<Rol> implements Serializable {
 
     @EJB
-    CategoriaFacadeLocal categoriafacade_;
-    Categoria categoria_;
+    RolFacadeLocal rolfacade_;
+    Rol rol_;
     private EstadosCRUD estado;
 
     //**** Manejo de imagenes que se desplazan en el inicio
@@ -48,7 +50,7 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     public void init() {
         //suffleImages();
         estado = EstadosCRUD.NONE;
-        categoria_ = new Categoria();
+        rol_ = new Rol();
         inicializar();
     }
 
@@ -56,14 +58,14 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     metodos sobre-cargados
      */
     @Override
-    protected Categoria getrowD(String rowkey) {
+    protected Rol getrowD(String rowkey) {
 
         if (rowkey != null && !rowkey.isEmpty() && this.getLazyModel().getWrappedData() != null) {
             try {
 
-                for (Categoria item : (List<Categoria>) this.getLazyModel().getWrappedData()) {
+                for (Rol item : (List<Rol>) this.getLazyModel().getWrappedData()) {
                     Integer registro = new Integer(rowkey);
-                    if (item.getIdCategoria().compareTo(registro) == 0) {
+                    if (item.getIdRol().compareTo(registro) == 0) {
                         return item;
                     }
 
@@ -77,21 +79,20 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
         return null;
 
     }
-
     @Override
-    protected Object getKey(Categoria entity) {
-        return entity.getIdCategoria();
+    protected Object getKey(Rol entity) {
+        return entity.getIdRol();
     }
 
     @Override
-    protected MetodosGenericos<Categoria> getFacadeLocal() {
-        return (MetodosGenericos<Categoria>) categoriafacade_;
-        //return categoriafacade_ Original
+    protected MetodosGenericos<Rol> getFacadeLocal() {
+        return (MetodosGenericos<Rol>) rolfacade_;
+        //return estadofacade_ Original
     }
 
     @Override
-    protected Categoria getEntity() {
-        return categoria_;
+    protected Rol getEntity() {
+        return rol_;
     }
 
     @Override
@@ -123,12 +124,12 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
     public void onRowSelect(SelectEvent event) {
         btncancelarHandler();
         estado = EstadosCRUD.EDITAR;
-        categoria_ = (Categoria) event.getObject();
+        rol_ = (Rol) event.getObject();
     }
 
     public void btncancelarHandler() {
         estado = EstadosCRUD.NONE;
-        categoria_ = new Categoria();
+        rol_ = new Rol();
     }
 
     public void btnNuevoHandler() {
@@ -142,29 +143,35 @@ public class CategoriaBean extends BackingBean<Categoria> implements Serializabl
         return estado;
     }
 
-    public Categoria getCategoria_() {
-        return categoria_;
+    public Rol getRol_() {
+        return rol_;
     }
 
-    public void setCategoria_(Categoria categoria_) {
-        this.categoria_ = categoria_;
+    public void setRol_(Rol rol_) {
+        this.rol_ = rol_;
     }
 
-    public List<Categoria> getLista() {
+    public List<Rol> getLista() {
         return lista;
     }
 
-    public void setLista(List<Categoria> lista) {
+    public void setLista(List<Rol> lista) {
         this.lista = lista;
     }
 
-    public LazyDataModel<Categoria> getLazyModel() {
+    public LazyDataModel<Rol> getLazyModel() {
         return lazyModel;
     }
 
-    public void setLazyModel(LazyDataModel<Categoria> lazyModel) {
+    public void setLazyModel(LazyDataModel<Rol> lazyModel) {
         this.lazyModel = lazyModel;
     }
+
+    
+
+    
+
+    
 
     
 

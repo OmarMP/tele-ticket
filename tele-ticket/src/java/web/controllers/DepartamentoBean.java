@@ -44,15 +44,16 @@ public class DepartamentoBean extends BackingBean<Departamento> implements Seria
     public List<String> getImages() {
         return images;
     }
+    */
 
     @PostConstruct
     public void init() {
-        suffleImages();
+       // suffleImages();
         estado = EstadosCRUD.NONE;
-        marca_ = new Marca();
+        depto_ = new Departamento();
         inicializar();
     }
-*/
+
     /*
     metodos sobre-cargados
      */

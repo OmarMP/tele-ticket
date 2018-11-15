@@ -6,28 +6,15 @@
 package acceso;
 
 import entity.Departamento;
-import java.util.List;
 import javax.ejb.Local;
+import web.controllers.MetodosGenericos;
 
 /**
  *
  * @author root
  */
 @Local
-public interface DepartamentoFacadeLocal {
+public interface DepartamentoFacadeLocal extends MetodosGenericos<Departamento> {
 
-    void create(Departamento departamento);
-
-    void edit(Departamento departamento);
-
-    void remove(Departamento departamento);
-
-    Departamento find(Object id);
-
-    List<Departamento> findAll();
-
-    List<Departamento> findRange(int desde, int  hasta);
-
-    int count();
     
 }
